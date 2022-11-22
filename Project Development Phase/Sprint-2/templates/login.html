@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- <center> -->
+    <br><br>
+    <h1
+      class="text-green text-center font-weight-bold"
+      style="font-size: 40px;"
+    >
+      Inventory Management System for Retailers
+    </h1>
+    <br><br>
+    <h4 class="text-blue text-center font-weight-bold" style="font-size: 20px;">
+      LOGIN
+    </h4>
+
+    <div class="container">
+      <br />
+
+      <div class="col-lg-5 m-auto d-block" style="background-color: whitesmoke;border-radius: 15px;">
+        <br>
+        <form action="/validate" onsubmit="{{ url_for('validate') }}" class="bg-light" method="post">
+          <div class="form-group" style="background-color: whitesmoke;">
+            <label for="user" class="font-weight-regular"> Username </label>
+            <input
+              type="text"
+              name="user"
+              class="form-control"
+              id="user"
+              autocomplete="off"
+            />
+            <span id="username_Alert" class="text-danger font-weight-regular">
+              {{nme}} </span>
+          </div>
+
+          <div class="form-group" style="background-color: whitesmoke;">
+            <label class="font-weight-regular"> Password </label>
+            <input
+              type="password"
+              name="pass"
+              class="form-control"
+              id="pass"
+              autocomplete="off"
+            />
+            <span id="password_Alert" class="text-danger font-weight-regular">
+              {{pwd}}
+            </span>
+          </div>
+          <input
+            type="submit"
+            name="submit"
+            value="LOGIN"
+            class="btn btn-success"
+            autocomplete="off"
+          />&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Did not have an account?
+          <a href="{{url_for('register')}}">SignUp</a>
+        </form>
+        <br>
+        <span id="username_Alert" class="text-danger font-weight-regular">{{msg}} </span>
+        <br>
+      </div>
+    </div>
+  <!-- </center> -->
+    <script type="text/javascript">
+      function validation() {
+        var user = document.getElementById("user").value;
+        var pass = document.getElementById("pass").value;
+
+        if (user == "") {
+          document.getElementById("username_Alert").innerHTML =
+            " ** Please fill the username field";
+          return false;
+        }
+        if (user.length <= 2 || user.length > 20) {
+          document.getElementById("username_Alert").innerHTML =
+            " ** Username lenght must be between 2 and 20";
+          return false;
+        }
+        if (!isNaN(user)) {
+          document.getElementById("username_Alert").innerHTML =
+            " ** only characters are allowed";
+          return false;
+        }
+
+        if (pass == "") {
+          document.getElementById("password_Alert").innerHTML =
+            " ** Please fill the password field";
+          return false;
+        }
+        if (pass.length <= 5 || pass.length > 20) {
+          document.getElementById("password_Alert").innerHTML =
+            " ** Passwords lenght must be between  5 and 20";
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
