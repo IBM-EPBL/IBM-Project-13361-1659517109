@@ -7,5 +7,3 @@ RUN python3 -m pip install ibm_db
 EXPOSE 5000
 ENTRYPOINT ["python"]
 CMD ["app.py"]
-
-
