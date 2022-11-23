@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-mgmt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flasknode
+  template:
+    metadata:
+      labels:
+        app: flasknode
+    spec:
+      containers:
+      - name: flasknode
+        image: us.icr.io/udhayakumaran/inventory_mgmt:1.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
